@@ -48,7 +48,7 @@ buttons.forEach(button => {
     }
 
     else {
-      alert("You Have Exhausted Your Opportunities!")
+      alert("You Have Fulfilled Your Opportunities!")
     };
   });
 });
@@ -57,6 +57,7 @@ buttons.forEach(button => {
 // Activity Logs
 
 const activityLog = document.getElementById("activityLog");
+const clearHistory = document.getElementById("clearHistory")
 
 buttons.forEach(button => {
   button.addEventListener("click", function () {
@@ -68,4 +69,10 @@ buttons.forEach(button => {
     dataEntry.innerHTML = `You have completed the task "${taskName}" at ${time}`;
     activityLog.prepend(dataEntry);
   });
+});
+
+
+// Clear History
+clearHistory.addEventListener("click", function () {
+  activityLog.innerHTML = "";
 });
