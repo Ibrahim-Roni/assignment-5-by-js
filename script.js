@@ -16,6 +16,20 @@ document.getElementById("color-theme").addEventListener("click", function() {
 });
 
 
+// For show today Weak and Date
+const today = new Date();
+const dayNames = ["Sun ,", "Mon ,", "Tue ,", "Wed ,", "Thu ,", "Fry ,", "Sat ,"];
+const dayName = dayNames[today.getDay()];
+
+const dateBox = today.toLocaleDateString("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric"
+});
+
+document.getElementById("day").textContent = dayName;
+document.getElementById("date").textContent = dateBox;
+
 // Buttons Alart
 const buttons = document.querySelectorAll(".btn");
 
@@ -62,7 +76,12 @@ const clearHistory = document.getElementById("clearHistory")
 buttons.forEach(button => {
   button.addEventListener("click", function () {
     const taskName = button.getAttribute("data-log");
-    const time = new Date().toLocaleTimeString();
+    const time = new Date().toLocaleTimeString("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: true
+    });
 
     const dataEntry = document.createElement("div");
     dataEntry.classList.add("w-full", "h-20", "text-sm", "bg-indigo-50", "rounded-lg", "p-5", "mb-6");
