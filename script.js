@@ -21,6 +21,51 @@ const buttons = document.querySelectorAll(".btn");
 
 buttons.forEach((button, index) => {
   button.addEventListener("click", function () {
-    alert(`Board Updated Successfully`);
+    alert("Board Updated Successfully");
+  });
+});
+
+
+// Addition and subtraction Numbers
+const sub_num = document.getElementById("subtraction");
+const add_num = document.getElementById("addition");
+
+buttons.forEach(button => {
+  button.addEventListener("click", function () {
+    const value = parseInt(button.getAttribute("data-value"));
+    let subtraction = parseInt(sub_num.textContent);
+    let addition = parseInt(add_num.textContent);
+
+
+    if (subtraction >= value) {
+      subtraction -= value;
+      addition += value;
+      sub_num.textContent = subtraction;
+      add_num.textContent = addition;
+
+      button.disabled = true;
+      button.classList.add("bg-gray-400", "cursor-not-allowed");
+    }
+
+    else {
+      alert("You Have Exhausted Your Opportunities!")
+    };
+  });
+});
+
+
+// Activity Logs
+
+const activityLog = document.getElementById("activityLog");
+
+buttons.forEach(button => {
+  button.addEventListener("click", function () {
+    const taskName = button.getAttribute("data-log");
+    const time = new Date().toLocaleTimeString();
+
+    const dataEntry = document.createElement("div");
+    dataEntry.classList.add("w-full", "h-20", "text-sm", "bg-indigo-50", "rounded-lg", "p-5", "mb-6");
+    dataEntry.innerHTML = `You have completed the task "${taskName}" at ${time}`;
+    activityLog.prepend(dataEntry);
   });
 });
